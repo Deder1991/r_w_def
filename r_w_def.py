@@ -1,7 +1,7 @@
 import os
+products = []
 
 def read_file(filename):	#讀取檔案
-	products = []
 	with open(filename, 'r', encoding='utf-8') as file:
 		for line in file:
 			if '商品名稱,價錢' in line:
@@ -9,7 +9,7 @@ def read_file(filename):	#讀取檔案
 			products.append(line.strip().split(','))
 	return products
 
-def input_products():	#輸入商品
+def input_file(products):	#輸入商品
 	while True:
 		name = input('輸入商品名稱:')
 		if name == 'q':
@@ -24,7 +24,6 @@ def write_file(filename):	#寫入檔案
 		for line in products:
 			file.write(line[0] + ',' + line[1] + '\n')
 
-
 	
 if os.path.isfile('products.csv'):
 	print('有檔案')
@@ -32,7 +31,7 @@ if os.path.isfile('products.csv'):
 else:
 	print('沒檔案')
 		
-products = input_products()
+products = input_file(products)
 print(products)
 write_file('products.csv')
 
